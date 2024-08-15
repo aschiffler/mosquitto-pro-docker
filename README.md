@@ -1,4 +1,18 @@
-# mosquitto-pro-docker
+# mosquitto-pro-docker with enabled InfluxDB metrics exporter plugin
+[Documentation is here](https://docs.cedalo.com/mosquitto/broker/Mosquitto%20Manual/mosquitto-metrics-exporter/#influxdb-metrics-exporter)
+
+Extend the mosquitto.conf by
+
+```
+global_plugin /usr/lib/cedalo_metrics_influxdb.so
+plugin_opt_update_interval 60
+plugin_opt_host http://localhost:8086
+plugin_opt_organisation devteam
+plugin_opt_bucket mosquitto
+plugin_opt_token changeme
+```
+
+## Setup and Test
 
 + [Pro Edition of Eclipse Mosquitto](https://cedalo.com/mqtt-broker-pro-mosquitto/) is used. You can request a [free 30-day trial period](https://cedalo.com/mqtt-broker-pro-mosquitto/trial-signup/)
 
