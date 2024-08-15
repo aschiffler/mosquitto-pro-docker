@@ -1,0 +1,41 @@
+services:
+    mosquitto:
+        image: registry.cedalo.com/mosquitto/mosquitto:2.9
+        ports:
+            - 1883:1883
+        volumes:
+            - ./config:/mosquitto/config
+            - ./data:/mosquitto/data
+            - ./license:/mosquitto/license:ro
+        hostname: mosquitto
+        environment:
+            CEDALO_LICENSE_FILE: /mosquitto/license/license.lic
+            MOSQUITTO_DYNSEC_PASSWORD: supersecretand12charlong
+    management-center:
+        image: registry.cedalo.com/mosquitto/management-center:2.9
+        environment:
+            CEDALO_MC_USERNAME: admin
+            CEDALO_MC_PASSWORD: admin
+            CEDALO_MC_LICENSE_PATH: /management-center/license/license.lic
+        ports:
+            - 8088:8088
+        volumes:
+            - ./license:/management-center/license:ro
+    influxdb:
+        image: influxdb:2
+        environment:
+            - DOCKER_INFLUXDB_INIT_TOKEN=xp9Vh93pZbeMDbsoQsA
+            - DOCKER_INFLUXDB_INIT_MODE=setup
+            - DOCKER_INFLUXDB_INIT_USERNAME=admin
+            - DOCKER_INFLUXDB_INIT_PASSWORD=admin4cedalo
+            - DOCKER_INFLUXDB_INIT_ORG=devteam
+            - DOCKER_INFLUXDB_INIT_BUCKET=mosquitto
+        ports:
+            - 8086:8086
+        volumes:
+            - ./influxdb:/var/lib/influxdb
+            - ./influxdb:/etc/influxdb
+    grafana:
+        image: grafana/grafana:latest
+        ports:
+            - 3000:3000
