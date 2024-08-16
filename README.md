@@ -6,7 +6,7 @@ Extend the mosquitto.conf by
 ```
 global_plugin /usr/lib/cedalo_metrics_influxdb.so
 plugin_opt_update_interval 60
-plugin_opt_host http://localhost:8086
+plugin_opt_host http://inflxudb:8086
 plugin_opt_organisation devteam
 plugin_opt_bucket mosquitto
 plugin_opt_token changeme
