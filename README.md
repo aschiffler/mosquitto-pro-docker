@@ -24,14 +24,14 @@ docker login registry.cedalo.com
 
 + Start the containers 
 ```
-docker-compose up -d
+docker compose up -d
 ```
 
 + Configuration and dashboard setup in Grafana with Data source http://influxdb:8086 and token, org and bucket set in docker-compose.yml
 
 + Stop and delete the containers
 ```
-docker-compose stop
+docker compose stop
 docker container rm $(docker ps -aq)
 ```
 
