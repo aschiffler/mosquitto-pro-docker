@@ -1,1 +1,5 @@
 config/dynamic-security.json
+influxdb/influx-configs
+influxdb/influxd.bolt
+influxdb/influxd.sqlite
+influxdb/engine
